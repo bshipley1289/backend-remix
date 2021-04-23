@@ -118,6 +118,11 @@ app.get("/login/user", (req, res) => {
   res.send(db.users[selectedUser]);
 });
 
+// logout
+app.get("/logout", (req, res) => {
+  res.send("Logout Successful");
+});
+
 // get single user by id
 app.get("/user/:userId", (req, res) => {
   let selectedUser = db.users.findIndex((user) => user.id == req.params.userId);
