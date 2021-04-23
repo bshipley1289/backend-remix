@@ -91,6 +91,22 @@ let db = {
   ],
 };
 
+// use
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  next();
+});
+
 // access database
 app.get("/", (req, res) => {
   res.send("Database is accessable");
@@ -102,7 +118,7 @@ app.get("/users", (req, res) => {
 });
 
 // login
-app.get("/login/user", (req, res) => {
+app.post("/login/user", (req, res) => {
   if (!req.body.username || !req.body.password) {
     res.status(400).send("Missing required field");
   }
